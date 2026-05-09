@@ -30,7 +30,7 @@ export default async function Home() {
       {/* numbers */}
       <Numbers />
       {/* order form */}
-      <OrderForm bannerVideos={bannerVideos}/>
+      <OrderForm bannerVideos={bannerVideos} />
       {/* logo */}
       <div className="h-[230px] relative my-[70px] mx-[16px]">
         <Image

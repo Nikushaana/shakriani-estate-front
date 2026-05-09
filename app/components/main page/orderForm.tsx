@@ -61,14 +61,16 @@ export default function OrderForm({ bannerVideos }: any) {
 
   return (
     <div className="relative py-[80px] flex flex-col items-center justify-center    overflow-hidden">
-      <video
-        src={`${process.env.NEXT_PUBLIC_API_URL}${bannerVideos[0].video}`}
-        autoPlay
-        loop
-        muted
-        playsInline
-        className="absolute inset-0 w-full h-full object-cover object-center"
-      />
+      {bannerVideos && (
+        <video
+          src={`${process.env.NEXT_PUBLIC_API_URL}${bannerVideos[0]?.video}`}
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover object-center"
+        />
+      )}
       <div
         className="relative z-10 rounded-[20px] text-white max-w-300 w-full py-[40px] px-[16px] flex flex-col
        items-center bg-[#8E997E33] backdrop-blur-[3px]"
