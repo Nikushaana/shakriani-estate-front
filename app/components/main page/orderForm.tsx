@@ -1,0 +1,132 @@
+"use client";
+
+import Image from "next/image";
+import { useState } from "react";
+
+export default function OrderForm() {
+  const [formData, setFormData] = useState({
+    fullName: "",
+    mobile: "",
+    email: "",
+    details: "",
+  });
+
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => {
+    setFormData((prev) => ({
+      ...prev,
+      [e.target.name]: e.target.value,
+    }));
+  };
+
+  return (
+    <div className="relative py-[80px] flex flex-col items-center justify-center    overflow-hidden">
+      <Image
+        src="/media/wineyard.png"
+        alt="Blog image"
+        fill
+        className="object-cover object-top"
+      />
+      {/* <video
+        src="/media/vlc-record-2026-04-20-23h26m35s-kai 1.MP4-.mp4"
+        autoPlay
+        loop
+        muted
+        playsInline
+        className="w-full h-full object-cover object-center"
+        /> */}
+      <div
+        className="relative z-10     rounded-[20px] text-white max-w-300 w-full py-[40px] px-[16px] flex flex-col
+       items-center bg-[#8E997E33] backdrop-blur-[3px]"
+      >
+        <h1 className="text-[40px] font-extrabold text-center">
+          Leave your order here
+        </h1>
+
+        <div className="relative max-w-[400px] w-full mt-[40px]">
+          <input
+            type="text"
+            name="fullName"
+            id="fullName"
+            value={formData.fullName}
+            onChange={handleChange}
+            placeholder=" "
+            className="peer border-b border-white h-[47px] w-full px-2 bg-transparent outline-none text-white"
+          />
+          <label
+            htmlFor="fullName"
+            className="absolute left-2 top-3 text-white duration-300 pointer-events-none
+            peer-placeholder-shown:top-3 peer-placeholder-shown:text-base
+            peer-focus:-top-3 peer-focus:text-sm
+            peer-not-placeholder-shown:-top-3 peer-not-placeholder-shown:text-sm"
+          >
+            Name, Surname
+          </label>
+        </div>
+        <div className="relative max-w-[400px] w-full mt-[20px]">
+          <input
+            type="text"
+            name="mobile"
+            id="mobile"
+            value={formData.mobile}
+            onChange={handleChange}
+            placeholder=" "
+            className="peer border-b border-white h-[47px] w-full px-2 bg-transparent outline-none text-white"
+          />
+          <label
+            htmlFor="mobile"
+            className="absolute left-2 top-3 text-white duration-300 pointer-events-none
+            peer-placeholder-shown:top-3 peer-placeholder-shown:text-base
+            peer-focus:-top-3 peer-focus:text-sm
+            peer-not-placeholder-shown:-top-3 peer-not-placeholder-shown:text-sm"
+          >
+            Mob
+          </label>
+        </div>
+        <div className="relative max-w-[400px] w-full mt-[20px]">
+          <input
+            type="email"
+            name="email"
+            id="email"
+            value={formData.email}
+            onChange={handleChange}
+            placeholder=" "
+            className="peer border-b border-white h-[47px] w-full px-2 bg-transparent outline-none text-white"
+          />
+          <label
+            htmlFor="email"
+            className="absolute left-2 top-3 text-white duration-300 pointer-events-none
+            peer-placeholder-shown:top-3 peer-placeholder-shown:text-base
+            peer-focus:-top-3 peer-focus:text-sm
+            peer-not-placeholder-shown:-top-3 peer-not-placeholder-shown:text-sm"
+          >
+            Email
+          </label>
+        </div>
+        <div className="relative max-w-[440px] w-full mt-[40px]">
+          <textarea
+            name="details"
+            id="details"
+            value={formData.details}
+            onChange={handleChange}
+            placeholder=" "
+            className="peer border border-white h-[120px] w-full resize-none p-2 outline-none text-white"
+          />
+          <label
+            htmlFor="details"
+            className="absolute left-2 top-3 text-white duration-300 pointer-events-none px-1 rounded
+            peer-placeholder-shown:top-5 peer-placeholder-shown:text-base
+            peer-focus:-top-5 peer-focus:text-sm
+            peer-not-placeholder-shown:-top-5 peer-not-placeholder-shown:text-sm"
+          >
+            Details
+          </label>
+        </div>
+        <button className="text-white bg-secondary hover:bg-[#64744C] focus:bg-[#44552B] duration-100 cursor-pointer rounded-[10px] h-[50px] max-w-[300px] w-full mt-[60px] flex items-center justify-center gap-8">
+          <h2 className="text-[20px] font-medium">Send</h2>
+        </button>
+      </div>
+    </div>
+  );
+}

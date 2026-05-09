@@ -1,0 +1,59 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #8b4253;
+  --color-secondary: #8e997e;
+}
+
+.top-curve {
+  position: relative;
+  clip-path: ellipse(140% 100% at 50% 100%);
+  overflow: hidden;
+}
+
+.top-curve::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.25), transparent 30%);
+
+  clip-path: ellipse(140% 100% at 50% 100%);
+}
+
+.bottom-curve {
+  position: relative;
+  clip-path: ellipse(140% 100% at 50% 0%);
+  overflow: hidden;
+}
+
+.bottom-curve::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+
+  /* inner shadow from bottom */
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.25), transparent 10%);
+
+  clip-path: ellipse(140% 100% at 50% 0%);
+}
+
+@media (max-width: 767px) {
+  .top-curve {
+    clip-path: ellipse(180% 100% at 50% 100%);
+  }
+
+  .top-curve::before {
+    clip-path: ellipse(180% 100% at 50% 100%);
+  }
+
+  .bottom-curve {
+    clip-path: ellipse(250% 100% at 50% 0%);
+  }
+
+  .bottom-curve::before {
+    clip-path: ellipse(250% 100% at 50% 0%);
+  }
+}
