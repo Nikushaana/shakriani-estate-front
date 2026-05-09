@@ -1,41 +1,12 @@
 import Image from "next/image";
 import Link from "next/link";
 
-export default function OurWines() {
-  const wines = [
-    {
-      id: 1,
-      image: "/media/wine1.svg",
-      name: "SAPERAVI",
-      type: "RED DRY WINE",
-      year: "2022",
-      price: "25",
-    },
-    {
-      id: 2,
-      image: "/media/wine1.svg",
-      name: "SAPERAVI",
-      type: "RED DRY WINE",
-      year: "2022",
-      price: "25",
-    },
-    {
-      id: 3,
-      image: "/media/wine1.svg",
-      name: "SAPERAVI",
-      type: "RED DRY WINE",
-      year: "2022",
-      price: "25",
-    },
-    {
-      id: 4,
-      image: "/media/wine1.svg",
-      name: "SAPERAVI",
-      type: "RED DRY WINE",
-      year: "2022",
-      price: "25",
-    },
-  ];
+export default async function OurWines() {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/wines`, {
+    cache: "no-store",
+  });
+  const wines = await res.json();
+
   return (
     <div className="relative flex flex-col items-center py-40 overflow-hidden">
       <div className="absolute w-[2000px] h-[1000px] -mt-70 max-md:-mr-150 -mr-300 rotate-40">
@@ -71,19 +42,24 @@ export default function OurWines() {
           {wines.map((wine) => (
             <div key={wine.id} className="grid max-md:grid-cols-1 grid-cols-2">
               <div className="relative">
-                <Image
+                {/* <Image
                   src={`${wine.image}`}
-                  alt={`${wine.id}`}
+                  alt={`${wine.image_alt}`}
                   height={600}
                   width={600}
+                  className="object-contain h-[426px]"
+                /> */}
+                <img
+                  src={`${process.env.NEXT_PUBLIC_API_URL}${wine.image}`}
+                  alt={wine.image_alt}
                   className="object-contain h-[426px]"
                 />
               </div>
               <div className="font-(family-name:--font-inter) flex flex-col items-start justify-center max-md:mx-auto max-md:w-60">
-                <h1 className="text-primary text-[20px] font-normal">
+                <h1 className="text-primary text-[20px] font-normal uppercase">
                   {wine.name}
                 </h1>
-                <p className="text-secondary text-[13px] font-normal mt-[15px]">
+                <p className="text-secondary text-[13px] font-normal mt-[15px] uppercase">
                   {wine.type}
                 </p>
                 <p className="text-secondary text-[12px] font-normal mt-[10px]">
@@ -93,7 +69,7 @@ export default function OurWines() {
                   {wine.price} GEL
                 </p>
                 <Link
-                  href={`/wines/${wine.name}`}
+                  href={`/wines/${wine.slug}`}
                   className="text-white bg-secondary hover:bg-[#64744C] focus:bg-[#44552B] duration-100 rounded-[10px] h-[50px] w-full flex items-center justify-center mt-[15px] cursor-pointer"
                 >
                   <h2 className="text-[20px] font-medium">VIEW</h2>

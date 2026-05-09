@@ -1,15 +1,16 @@
 "use client";
 
-import Image from "next/image";
 import { useState } from "react";
 
-export default function OrderForm() {
+export default function OrderForm({ bannerVideos }: any) {
   const [formData, setFormData] = useState({
     fullName: "",
     mobile: "",
     email: "",
     details: "",
   });
+
+  const [loading, setLoading] = useState(false);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
@@ -20,24 +21,56 @@ export default function OrderForm() {
     }));
   };
 
+  const handleSubmit = async () => {
+    try {
+      setLoading(true);
+
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/orders`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          full_name: formData.fullName,
+          tel: formData.mobile,
+          email: formData.email,
+          details: formData.details,
+        }),
+      });
+
+      if (!res.ok) {
+        throw new Error("Failed to create order");
+      }
+
+      const data = await res.json();
+
+      alert("Order sent successfully!");
+
+      setFormData({
+        fullName: "",
+        mobile: "",
+        email: "",
+        details: "",
+      });
+    } catch (err) {
+      alert("Something went wrong");
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <div className="relative py-[80px] flex flex-col items-center justify-center    overflow-hidden">
-      <Image
-        src="/media/wineyard.png"
-        alt="Blog image"
-        fill
-        className="object-cover object-top"
-      />
-      {/* <video
-        src="/media/vlc-record-2026-04-20-23h26m35s-kai 1.MP4-.mp4"
+      <video
+        src={`${process.env.NEXT_PUBLIC_API_URL}${bannerVideos[0].video}`}
         autoPlay
         loop
         muted
         playsInline
-        className="w-full h-full object-cover object-center"
-        /> */}
+        className="absolute inset-0 w-full h-full object-cover object-center"
+      />
       <div
-        className="relative z-10     rounded-[20px] text-white max-w-300 w-full py-[40px] px-[16px] flex flex-col
+        className="relative z-10 rounded-[20px] text-white max-w-300 w-full py-[40px] px-[16px] flex flex-col
        items-center bg-[#8E997E33] backdrop-blur-[3px]"
       >
         <h1 className="text-[40px] font-extrabold text-center">
@@ -123,8 +156,14 @@ export default function OrderForm() {
             Details
           </label>
         </div>
-        <button className="text-white bg-secondary hover:bg-[#64744C] focus:bg-[#44552B] duration-100 cursor-pointer rounded-[10px] h-[50px] max-w-[300px] w-full mt-[60px] flex items-center justify-center gap-8">
-          <h2 className="text-[20px] font-medium">Send</h2>
+        <button
+          onClick={handleSubmit}
+          disabled={loading}
+          className="text-white bg-secondary hover:bg-[#64744C] focus:bg-[#44552B] duration-100 cursor-pointer rounded-[10px] h-[50px] max-w-[300px] w-full mt-[60px] flex items-center justify-center gap-8"
+        >
+          <h2 className="text-[20px] font-medium">
+            {loading ? "Sending..." : "Send"}
+          </h2>
         </button>
       </div>
     </div>

@@ -1,55 +1,12 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { FaArrowRightLong } from "react-icons/fa6";
 import { TfiArrowCircleLeft, TfiArrowCircleRight } from "react-icons/tfi";
 
-export default function OurWinesSlider() {
-  const wines = [
-    {
-      id: 1,
-      name: "Kisi",
-      type: "Amber Dry",
-      image: "/media/Kisi w backgr 1.png",
-    },
-    {
-      id: 2,
-      name: "Kisi",
-      type: "Amber Dry",
-      image: "/media/Kisi w backgr 1.png",
-    },
-    {
-      id: 3,
-      name: "Kisi",
-      type: "Amber Dry",
-      image: "/media/Kisi w backgr 1.png",
-    },
-    {
-      id: 4,
-      name: "Kisi",
-      type: "Amber Dry",
-      image: "/media/Kisi w backgr 1.png",
-    },
-    {
-      id: 5,
-      name: "Kisi",
-      type: "Amber Dry",
-      image: "/media/Kisi w backgr 1.png",
-    },
-    {
-      id: 6,
-      name: "Kisi",
-      type: "Amber Dry",
-      image: "/media/Kisi w backgr 1.png",
-    },
-    {
-      id: 7,
-      name: "Kisi",
-      type: "Amber Dry",
-      image: "/media/Kisi w backgr 1.png",
-    },
-  ];
-
+export default function OurWinesSlider({ wines }: any) {
   const [index, setIndex] = useState(0);
 
   const [itemsPerSlide, setItemsPerSlide] = useState(2);
@@ -80,14 +37,16 @@ export default function OurWinesSlider() {
   };
 
   return (
-    <div
-      className="top-curve pb-20 pt-30 bg-primary flex flex-col gap-20 items-center justify-center"
-    >
-      <h1 className="max-md:hidden text-[64px] text-white font-extrabold">Our Wines</h1>
+    <div className="top-curve pb-20 pt-30 bg-primary flex flex-col gap-20 items-center justify-center">
+      <h1 className="max-md:hidden text-[64px] text-white font-extrabold">
+        Our Wines
+      </h1>
       <div className="flex items-center justify-between max-md:gap-4 gap-10 w-full max-w-300 px-[16px]">
-        <button onClick={prev} className="cursor-pointer">
-          <TfiArrowCircleLeft className="text-white text-3xl" />
-        </button>
+        {(itemsPerSlide == 1 ? wines.length > 1 : wines.length > 2) && (
+          <button onClick={prev} className="cursor-pointer">
+            <TfiArrowCircleLeft className="text-white text-3xl" />
+          </button>
+        )}
         <div className="overflow-hidden flex-1">
           <div
             className="flex transition-transform duration-700 ease-in-out"
@@ -107,14 +66,19 @@ export default function OurWinesSlider() {
                   )
                   .map((wine) => (
                     <Link
-                      href={`/wines/${wine.name}`}
+                      href={`/wines/${wine.slug}`}
                       key={wine.id}
                       className="rounded-[11px] overflow-hidden relative w-[284px] h-[426px]"
                     >
-                      <Image
+                      {/* <Image
                         src={`${wine.image}`}
-                        alt={`${wine.name}`}
+                        alt={`${wine.image_alt}`}
                         fill
+                        className="object-cover "
+                      /> */}
+                      <img
+                        src={`${process.env.NEXT_PUBLIC_API_URL}${wine.image}`}
+                        alt={wine.image_alt}
                         className="object-cover opacity-80"
                       />
                       <div className="absolute bottom-10 left-8 border-l border-white pl-2 py-1">
@@ -133,9 +97,11 @@ export default function OurWinesSlider() {
             ))}
           </div>
         </div>
-        <button onClick={next} className="cursor-pointer">
-          <TfiArrowCircleRight className="text-white text-3xl" />
-        </button>
+        {(itemsPerSlide == 1 ? wines.length > 1 : wines.length > 2) && (
+          <button onClick={next} className="cursor-pointer">
+            <TfiArrowCircleRight className="text-white text-3xl" />
+          </button>
+        )}
       </div>
       <Link
         href={"/wines"}

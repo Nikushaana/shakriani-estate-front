@@ -1,23 +1,10 @@
 import Image from "next/image";
 
-export default function Awards() {
-  const awards = [
-    {
-      id: 1,
-      image: "/media/wineyard.png",
-      text: "Lorem ipsum dolor sit amet consectetur. Mauris faucibus neque scelerisque urna. Imperdiet ac magna elementum magna ut. Et pulvinar egestas in duis egestas adipiscing. Auctor elit vestibulum commodo in facilisis tellus amet scelerisque.",
-    },
-    {
-      id: 2,
-      image: "/media/wineyard.png",
-      text: "Lorem ipsum dolor sit amet consectetur. Mauris faucibus neque scelerisque urna. Imperdiet ac magna elementum magna ut. Et pulvinar egestas in duis egestas adipiscing. Auctor elit vestibulum commodo in facilisis tellus amet scelerisque.",
-    },
-    {
-      id: 3,
-      image: "/media/wineyard.png",
-      text: "Lorem ipsum dolor sit amet consectetur. Mauris faucibus neque scelerisque urna. Imperdiet ac magna elementum magna ut. Et pulvinar egestas in duis egestas adipiscing. Auctor elit vestibulum commodo in facilisis tellus amet scelerisque.",
-    },
-  ];
+export default async function Awards() {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/awards`, {
+    cache: "no-store",
+  });
+  const awards = await res.json();
 
   return (
     <div className="relative flex flex-col items-center py-30 overflow-hidden">
@@ -46,19 +33,29 @@ export default function Awards() {
         />
       </div>
       <div className="max-w-300 w-full text-center max-lg:space-y-10 space-y-30 px-[16px]">
-        <h1 className="text-primary max-md:text-[36px] text-[48px] font-extrabold tracking-[20px] ">AWARDS</h1>
+        <h1 className="text-primary max-md:text-[36px] text-[48px] font-extrabold tracking-[20px] ">
+          AWARDS
+        </h1>
         {awards.map((award, index) => {
           return (
             <div key={award.id} className="max-lg:space-y-10 space-y-30">
-              <div className={`grid max-lg:grid-cols-1 grid-cols-2 max-lg:gap-0 gap-40`}>
+              <div
+                className={`grid max-lg:grid-cols-1 grid-cols-2 max-lg:gap-0 gap-40`}
+              >
                 <div
                   className={`relative rounded-[11px] overflow-hidden max-lg:aspect-video max-lg:mt-10 max-lg:order-0 ${index % 2 !== 0 ? "order-2" : ""}`}
                 >
-                  <Image
-                    src={`${award.image}`}
+                  {/* <Image
+                    src={`${process.env.NEXT_PUBLIC_API_URL}${award.image}`}
                     alt={`${award.id}`}
                     fill
+                    unoptimized
                     className="object-cover"
+                  /> */}
+                  <img
+                    src={`${process.env.NEXT_PUBLIC_API_URL}${award.image}`}
+                    alt={award.id}
+                    className="object-cover w-full h-full"
                   />
                 </div>
                 <p

@@ -1,5 +1,23 @@
 import OrderForm from "../components/main page/orderForm";
 
+export async function generateMetadata() {
+  return {
+    title: "Contact | shakriani-estate.ge",
+    description:
+      "Get in touch with us. Find our phone number, email, address and location.",
+    openGraph: {
+      title: "Contact | shakriani-estate.ge",
+      description:
+        "Get in touch with us. Find our phone number, email, address and location.",
+      images: [
+        {
+          url: "/media/SmallLogo.svg",
+        },
+      ],
+    },
+  };
+}
+
 export default async function Page() {
   return (
     <div className="pb-[40px]">

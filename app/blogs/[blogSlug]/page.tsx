@@ -1,5 +1,34 @@
 import Image from "next/image";
 
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ blogSlug: string }>;
+}) {
+  const { blogSlug } = await params;
+
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_API_URL}/blogs/${blogSlug}`,
+    { cache: "no-store" },
+  );
+
+  const blog = await res.json();
+
+  return {
+    title: blog.meta_title,
+    description: blog.meta_description,
+    openGraph: {
+      title: blog.meta_title,
+      description: blog.meta_description,
+      images: [
+        {
+          url: `${process.env.NEXT_PUBLIC_API_URL}${blog.image}`,
+        },
+      ],
+    },
+  };
+}
+
 export default async function Page({
   params,
 }: {
@@ -7,13 +36,17 @@ export default async function Page({
 }) {
   const { blogSlug } = await params;
 
-  console.log(blogSlug);
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_API_URL}/blogs/${blogSlug}`,
+    {
+      cache: "no-store",
+    },
+  );
+  const blog = await res.json();
 
   return (
     <div>
-      <div
-        className="bottom-curve bg-primary pt-70 max-md:pt-40"
-      ></div>
+      <div className="bottom-curve bg-primary pt-70 max-md:pt-40"></div>
 
       {/* logo */}
       <div className="h-[230px] relative max-md:my-0 my-[70px] mx-[16px]">
@@ -46,32 +79,22 @@ export default async function Page({
 
         <div className="max-w-340 w-full max-md:space-y-20 space-y-30 px-[16px]">
           <div className="flex flex-col items-center">
-            <Image
-              src="/media/wineyard.png"
-              alt="vazi image"
+            {/* <Image
+              src={`${blog.image}`}
+              alt={`${blog.image_alt}`}
               width={600}
               height={600}
               className="object-cover rounded-[10px] overflow-hidden"
+            /> */}
+            <img
+              src={`${process.env.NEXT_PUBLIC_API_URL}${blog.image}`}
+              alt={blog.image_alt}
+              className="object-cover rounded-[10px]"
             />
           </div>
 
           <p className="font-[family-name:var(--font-tribun)] text-primary font-medium tracking-[1px] text-[20px]">
-            Lorem ipsum dolor sit amet consectetur. Adipiscing libero ultricies
-            ipsum habitant tempor urna arcu nisl sit. Sed massa odio nunc id
-            velit quis felis quam. Eu eleifend scelerisque cras nec at odio
-            etiam blandit viverra. Enim aliquam sed dui lorem ut nisl. Pharetra
-            semper augue integer est pharetra duis velit mi in. Lorem sed
-            pellentesque tincidunt bibendum cras risus. Euismod sit tortor urna
-            interdum pulvinar suspendisse ipsum. Nibh donec purus sagittis
-            tortor eu dignissim enim cursus dis. Nisl varius ut tellus nunc.
-            Felis quam cras massa non facilisis porta facilisis ut. Vulputate
-            convallis proin turpis proin et. Molestie bibendum enim interdum
-            ultricies hendrerit est. In eu consectetur suscipit senectus porta
-            accumsan pellentesque sed. Id eget tincidunt quisque nunc egestas
-            bibendum cursus. Sodales vitae in ac sed consequat ut tortor. Metus
-            sed hac mauris ullamcorper. Elit commodo pellentesque magna at orci
-            pellentesque eu. Venenatis consectetur lacus pulvinar bibendum amet
-            interdum. Velit sed arcu congue dignissim auctor et enim porta.
+            {blog.text}
           </p>
         </div>
       </div>

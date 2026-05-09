@@ -1,5 +1,34 @@
 import Image from "next/image";
 
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ wineSlug: string }>;
+}) {
+  const { wineSlug } = await params;
+
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_API_URL}/wines/${wineSlug}`,
+    { cache: "no-store" },
+  );
+
+  const wine = await res.json();
+
+  return {
+    title: wine.meta_title,
+    description: wine.meta_description,
+    openGraph: {
+      title: wine.meta_title,
+      description: wine.meta_description,
+      images: [
+        {
+          url: `${process.env.NEXT_PUBLIC_API_URL}${wine.image}`,
+        },
+      ],
+    },
+  };
+}
+
 export default async function Page({
   params,
 }: {
@@ -7,35 +36,39 @@ export default async function Page({
 }) {
   const { wineSlug } = await params;
 
-  console.log(wineSlug);
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_API_URL}/wines/${wineSlug}`,
+    {
+      cache: "no-store",
+    },
+  );
+  const wine = await res.json();
 
   const details = [
     {
       id: 1,
       title: "Alc / Vol",
-      value: "14% / 75",
+      value: `${wine.alc}% / ${wine.vol}`,
     },
     {
       id: 2,
       title: "Year",
-      value: "2024",
+      value: `${wine.year}`,
     },
     {
       id: 3,
       title: "Origin",
-      value: "Georgia",
+      value: `${wine.origin}`,
     },
     {
       id: 4,
       title: "Serve",
-      value: "15°C - 17°C",
+      value: `${wine.serve}`,
     },
   ];
   return (
     <div>
-      <div
-        className="bottom-curve bg-primary flex flex-col items-center max-md:pt-40 pt-70 max-md:pb-20 px-[16px] font-[family-name:var(--font-tribun)]"
-      >
+      <div className="bottom-curve bg-primary flex flex-col items-center max-md:pt-40 pt-70 max-md:pb-20 px-[16px] font-[family-name:var(--font-tribun)]">
         <h1 className="max-md:text-4xl text-6xl max-md:tracking-[10px] tracking-[20px] text-white text-center max-md:flex hidden">
           SHAKRIANI ESTATE
         </h1>
@@ -60,16 +93,21 @@ export default async function Page({
         </div>
         <div className="grid max-md:grid-cols-1 px-[16px] grid-cols-2 gap-20 max-w-340 w-full">
           <div className="relative w-full max-md:aspect-square">
-            <Image
-              src="/media/wine1.svg"
-              alt="vazi image"
+            {/* <Image
+              src={`${wine.image}`}
+              alt={`${wine.image_alt}`}
               fill
               className="object-contain"
+            /> */}
+            <img
+              src={`${process.env.NEXT_PUBLIC_API_URL}${wine.image}`}
+              alt={wine.image_alt}
+              className="object-contain w-full h-full"
             />
           </div>
           <div className="rounded-[11px] border border-[#8E997E] bg-[#8E997E3D] max-md:px-[16px] p-15 flex flex-col items-center gap-[57px]">
-            <h1 className="font-(family-name:--font-inter) text-[24px] font-extrabold text-primary tracking-[12px]">
-              SAPERAVI
+            <h1 className="font-(family-name:--font-inter) text-[24px] font-extrabold text-primary tracking-[12px] uppercase">
+              {wine.name}
             </h1>
             <div className="grid max-md:grid-cols-3 grid-cols-7 max-md:gap-10 items-center max-md:px-10 font-(family-name:--font-inter)">
               {details.map((detail, index) => {
@@ -100,19 +138,7 @@ export default async function Page({
               })}
             </div>
             <p className="font-[family-name:var(--font-tribun)] text-primary font-bold tracking-[1px]">
-              This Saperavi expresses the depth and natural structure
-              characteristic of Qvevri wine. The aroma blends mineral notes,
-              spices, and red berries, creating a multilayered, characterful,
-              and harmonious bouquet. The style is pronounced and natural, with
-              aromas that gradually unfold and gain depth. <br /> <br /> The
-              palate is distinguished by soft tannins and a well-balanced
-              structure, lending the wine silkiness and elegance. Its medium
-              body and integrated texture create a harmonious profile that
-              transitions into a clean, medium-length finish. The Kakhetian
-              style is presented here in a traditional yet refined
-              interpretation of Qvevri winemaking. <br /> <br /> It pairs
-              ideally with grilled meats, eggplant with walnuts (badrijani),
-              vegetable-based dishes, and cheese.
+              {wine.description}
             </p>
           </div>
         </div>
