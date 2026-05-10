@@ -5,6 +5,7 @@ import Footer from "./components/footer";
 import Header from "./components/header";
 import BurgerMenu from "./components/burgerMenu";
 import localFont from "next/font/local";
+import { Toaster } from "react-hot-toast";
 
 export const metadata: Metadata = {
   title: "Shakriani estate",
@@ -35,6 +36,8 @@ export default function RootLayout({
         <Footer />
 
         <BurgerMenu />
+
+        <Toaster position="top-right" />
       </body>
     </html>
   );

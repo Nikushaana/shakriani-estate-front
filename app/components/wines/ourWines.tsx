@@ -51,7 +51,7 @@ export default async function OurWines() {
                   className="object-contain h-[426px]"
                 /> */}
                 <img
-                  src={`${process.env.NEXT_PUBLIC_API_URL}${wine.image}`}
+                  src={`${wine.image}`}
                   alt={wine.image_alt}
                   className="object-contain h-[426px]"
                 />

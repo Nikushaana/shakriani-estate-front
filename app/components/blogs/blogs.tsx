@@ -38,7 +38,7 @@ export default async function Blogs() {
                     className="object-cover"
                   /> */}
                   <img
-                    src={`${process.env.NEXT_PUBLIC_API_URL}${blog.image}`}
+                    src={`${blog.image}`}
                     alt={blog.image_alt}
                     className="object-cover w-full h-full"
                   />

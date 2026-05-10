@@ -61,7 +61,7 @@ export default async function Awards() {
                     className="object-cover"
                   /> */}
                   <img
-                    src={`${process.env.NEXT_PUBLIC_API_URL}${award.image}`}
+                    src={`${award.image}`}
                     alt={award.id}
                     className="object-contain max-w-full max-h-full rounded-[11px]"
                   />

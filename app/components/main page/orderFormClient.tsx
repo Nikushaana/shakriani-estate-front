@@ -1,6 +1,18 @@
 "use client";
 
 import { useState } from "react";
+import { toast } from "react-hot-toast";
+import { z } from "zod";
+
+const orderSchema = z.object({
+  fullName: z.string().min(2, "Full name is required"),
+
+  mobile: z.string().min(5, "Mobile number is required"),
+
+  email: z.string().email("Please enter a valid email"),
+
+  details: z.string().min(5, "Details are required"),
+});
 
 export default function OrderFormClient({ bannerVideos }: any) {
   const [formData, setFormData] = useState({
@@ -23,6 +35,8 @@ export default function OrderFormClient({ bannerVideos }: any) {
 
   const handleSubmit = async () => {
     try {
+      const validatedData = orderSchema.parse(formData);
+
       setLoading(true);
 
       const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/orders`, {
@@ -31,10 +45,10 @@ export default function OrderFormClient({ bannerVideos }: any) {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          full_name: formData.fullName,
-          tel: formData.mobile,
-          email: formData.email,
-          details: formData.details,
+          full_name: validatedData.fullName,
+          tel: validatedData.mobile,
+          email: validatedData.email,
+          details: validatedData.details,
         }),
       });
 
@@ -44,7 +58,19 @@ export default function OrderFormClient({ bannerVideos }: any) {
 
       const data = await res.json();
 
-      alert("Order sent successfully!");
+      toast.success("Order sent successfully!", {
+        style: {
+          background: "#166534",
+          color: "#fff",
+          border: "1px solid #22c55e",
+          padding: "16px",
+          borderRadius: "12px",
+        },
+        iconTheme: {
+          primary: "#22c55e",
+          secondary: "#fff",
+        },
+      });
 
       setFormData({
         fullName: "",
@@ -53,7 +79,41 @@ export default function OrderFormClient({ bannerVideos }: any) {
         details: "",
       });
     } catch (err) {
-      alert("Something went wrong");
+      if (err instanceof z.ZodError) {
+        err.issues.forEach((error, index) => {
+          setTimeout(() => {
+            toast.error(error.message, {
+              style: {
+                background: "#7f1d1d",
+                color: "#fff",
+                border: "1px solid #ef4444",
+                padding: "16px",
+                borderRadius: "12px",
+              },
+              iconTheme: {
+                primary: "#ef4444",
+                secondary: "#fff",
+              },
+            });
+          }, index * 300);
+        });
+
+        return;
+      }
+
+      toast.error("Something went wrong!", {
+        style: {
+          background: "#7f1d1d",
+          color: "#fff",
+          border: "1px solid #ef4444",
+          padding: "16px",
+          borderRadius: "12px",
+        },
+        iconTheme: {
+          primary: "#ef4444",
+          secondary: "#fff",
+        },
+      });
     } finally {
       setLoading(false);
     }
@@ -63,7 +123,7 @@ export default function OrderFormClient({ bannerVideos }: any) {
     <div className="relative py-[80px] flex flex-col items-center justify-center    overflow-hidden">
       {bannerVideos && (
         <video
-          src={`${process.env.NEXT_PUBLIC_API_URL}${bannerVideos[0]?.video}`}
+          src={`${bannerVideos[0]?.video}`}
           autoPlay
           loop
           muted

@@ -22,7 +22,7 @@ export async function generateMetadata({
       description: blog.meta_description,
       images: [
         {
-          url: `${process.env.NEXT_PUBLIC_API_URL}${blog.image}`,
+          url: `${blog.image}`,
         },
       ],
     },
@@ -87,7 +87,7 @@ export default async function Page({
               className="object-cover rounded-[10px] overflow-hidden"
             /> */}
             <img
-              src={`${process.env.NEXT_PUBLIC_API_URL}${blog.image}`}
+              src={`${blog.image}`}
               alt={blog.image_alt}
               className="object-cover rounded-[10px] max-h-[500px] z-10"
             />

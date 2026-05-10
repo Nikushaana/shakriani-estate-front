@@ -22,7 +22,7 @@ export async function generateMetadata({
       description: wine.meta_description,
       images: [
         {
-          url: `${process.env.NEXT_PUBLIC_API_URL}${wine.image}`,
+          url: `${wine.image}`,
         },
       ],
     },
@@ -100,7 +100,7 @@ export default async function Page({
               className="object-contain"
             /> */}
             <img
-              src={`${process.env.NEXT_PUBLIC_API_URL}${wine.image}`}
+              src={`${wine.image}`}
               alt={wine.image_alt}
               className="object-contain w-full h-full"
             />

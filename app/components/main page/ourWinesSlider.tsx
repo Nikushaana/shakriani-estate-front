@@ -87,7 +87,7 @@ export default function OurWinesSlider({ wines }: any) {
                     <Link
                       href={`/wines/${wine.slug}`}
                       key={wine.id}
-                      className="rounded-[11px] overflow-hidden relative w-[284px] h-[426px]"
+                      className="rounded-[11px] bg-gray-200 overflow-hidden relative w-[284px] h-[426px]"
                     >
                       {/* <Image
                         src={`${wine.image}`}
@@ -96,7 +96,7 @@ export default function OurWinesSlider({ wines }: any) {
                         className="object-cover "
                       /> */}
                       <img
-                        src={`${process.env.NEXT_PUBLIC_API_URL}${wine.image}`}
+                        src={wine.image}
                         alt={wine.image_alt}
                         className="object-cover opacity-80"
                       />
