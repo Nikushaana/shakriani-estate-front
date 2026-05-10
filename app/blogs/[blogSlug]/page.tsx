@@ -60,7 +60,7 @@ export default async function Page({
 
       {/* blog details */}
       <div className="overflow-hidden relative max-md:mb-30 max-md:my-0 my-30 flex flex-col items-center">
-        <div className="absolute w-[400px] h-[400px] max-md:-mr-30 max-md:mt-10 -mr-360 rotate-150">
+        <div className="absolute w-[400px] h-[400px] max-md:-mr-30 max-md:mt-10 -mr-360 rotate-150 z-0">
           <Image
             src="/media/layer.svg"
             alt="vazi image"
@@ -77,8 +77,8 @@ export default async function Page({
           />
         </div>
 
-        <div className="max-w-340 w-full max-md:space-y-20 space-y-30 px-[16px]">
-          <div className="flex flex-col items-center">
+        <div className="max-w-340 w-full max-md:space-y-20 space-y-30 px-[16px] ">
+          <div className="flex flex-col items-center ">
             {/* <Image
               src={`${blog.image}`}
               alt={`${blog.image_alt}`}
@@ -89,7 +89,7 @@ export default async function Page({
             <img
               src={`${process.env.NEXT_PUBLIC_API_URL}${blog.image}`}
               alt={blog.image_alt}
-              className="object-cover rounded-[10px]"
+              className="object-cover rounded-[10px] max-h-[500px] z-10"
             />
           </div>
 

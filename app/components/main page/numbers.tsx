@@ -13,7 +13,9 @@ export default function Numbers() {
       </div>
       <div className="z-10 max-w-300 w-full grid max-md:grid-cols-1 grid-cols-3 gap-10 py-30">
         <div className="flex flex-col items-center">
-          <h1 className="text-primary text-[80px]">4</h1>
+          <h1 className="text-primary text-[80px]">
+            {new Date().getFullYear() - 2007}
+          </h1>
           <h2 className="text-secondary text-[30px] text-center font-medium">
             Years in <br /> Business
           </h2>

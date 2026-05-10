@@ -1,6 +1,19 @@
 import Image from "next/image";
 import Link from "next/link";
 
+type Blog = {
+    id: string;
+    image: string;
+    image_alt: string;
+    small_text: string;
+    text: string;
+    meta_title: string;
+    meta_description: string;
+    slug: string;
+    created_at: string;
+    updated_at: string;
+  };
+  
 export default async function Blogs() {
   const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/blogs`, {
     cache: "no-store",
@@ -10,7 +23,7 @@ export default async function Blogs() {
   return (
     <div className="flex flex-col items-center overflow-hidden py-10">
       <div className="max-w-300 w-full text-center max-md:space-y-20 space-y-30 z-10 px-[16px]">
-        {blogs.map((blog, index) => {
+        {blogs.map((blog: Blog, index: number) => {
           return (
             <div key={blog.id} className="max-md:space-y-20 space-y-30">
               <div

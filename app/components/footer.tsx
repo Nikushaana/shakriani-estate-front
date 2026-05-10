@@ -31,6 +31,7 @@ export default function Footer() {
       url: "https://www.instagram.com/shakriani_estate/",
     },
   ];
+  
   return (
     <div className="top-curve bg-primary text-white pt-30 flex flex-col gap-20 items-center justify-center">
       <div className="max-w-300 w-full flex flex-col items-center px-[16px]">
@@ -85,7 +86,7 @@ export default function Footer() {
         </div>
         <hr className="border-white max-md:w-full w-1/2" />
         <h1 className="py-3 text-[14px]">
-          © 2026 Shakriani Estate | All Rights Reserved
+          © {new Date().getFullYear()} Shakriani Estate | All Rights Reserved
         </h1>
       </div>
     </div>

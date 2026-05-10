@@ -11,14 +11,6 @@ export default async function Home() {
   });
   const wines = await winesRes.json();
 
-  const bannerVideosRes = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/bannerVideos`,
-    {
-      cache: "no-store",
-    },
-  );
-  const bannerVideos = await bannerVideosRes.json();
-
   return (
     <div className="font-[family-name:var(--font-tribun)]">
       {/* header part  */}
@@ -30,7 +22,7 @@ export default async function Home() {
       {/* numbers */}
       <Numbers />
       {/* order form */}
-      <OrderForm bannerVideos={bannerVideos} />
+      <OrderForm />
       {/* logo */}
       <div className="h-[230px] relative my-[70px] mx-[16px]">
         <Image

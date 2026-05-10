@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { Wine } from "../main page/ourWinesSlider";
 
 export default async function OurWines() {
   const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/wines`, {
@@ -39,8 +40,8 @@ export default async function OurWines() {
           OUR WINES
         </h1>
         <div className="grid max-md:grid-cols-1 grid-cols-2 gap-40">
-          {wines.map((wine) => (
-            <div key={wine.id} className="grid max-md:grid-cols-1 grid-cols-2">
+          {wines.map((wine: Wine) => (
+            <div key={wine.id} className="grid max-md:grid-cols-1 grid-cols-2 gap-2">
               <div className="relative">
                 {/* <Image
                   src={`${wine.image}`}

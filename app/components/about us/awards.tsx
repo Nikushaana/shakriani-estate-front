@@ -1,5 +1,13 @@
 import Image from "next/image";
 
+type Award = {
+  id: string;
+  image: string;
+  text: string;
+  created_at: string;
+  updated_at: string;
+};
+
 export default async function Awards() {
   const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/awards`, {
     cache: "no-store",
@@ -36,14 +44,14 @@ export default async function Awards() {
         <h1 className="text-primary max-md:text-[36px] text-[48px] font-extrabold tracking-[20px] ">
           AWARDS
         </h1>
-        {awards.map((award, index) => {
+        {awards.map((award: Award, index: number) => {
           return (
             <div key={award.id} className="max-lg:space-y-10 space-y-30">
               <div
                 className={`grid max-lg:grid-cols-1 grid-cols-2 max-lg:gap-0 gap-40`}
               >
                 <div
-                  className={`relative rounded-[11px] overflow-hidden max-lg:aspect-video max-lg:mt-10 max-lg:order-0 ${index % 2 !== 0 ? "order-2" : ""}`}
+                  className={`relative flex items-center justify-center aspect-square max-lg:aspect-video max-lg:mt-10 max-lg:order-0 ${index % 2 !== 0 ? "order-2" : ""}`}
                 >
                   {/* <Image
                     src={`${process.env.NEXT_PUBLIC_API_URL}${award.image}`}
@@ -55,11 +63,11 @@ export default async function Awards() {
                   <img
                     src={`${process.env.NEXT_PUBLIC_API_URL}${award.image}`}
                     alt={award.id}
-                    className="object-cover w-full h-full"
+                    className="object-contain max-w-full max-h-full rounded-[11px]"
                   />
                 </div>
                 <p
-                  className={`text-[24px] text-start font-normal max-lg:my-10 my-20 max-lg:px-[16px] text-secondary ${
+                  className={`text-[24px] text-start font-normal flex items-center max-lg:my-10 my-20 max-lg:px-[16px] text-secondary ${
                     index % 2 !== 0 ? "order-1" : ""
                   }`}
                 >

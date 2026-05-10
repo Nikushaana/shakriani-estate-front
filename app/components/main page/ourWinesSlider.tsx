@@ -1,10 +1,29 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { FaArrowRightLong } from "react-icons/fa6";
 import { TfiArrowCircleLeft, TfiArrowCircleRight } from "react-icons/tfi";
+
+export type Wine = {
+  id: string;
+  image: string;
+  image_alt: string;
+  name: string;
+  type: string;
+  year: string;
+  price: string;
+  description: string;
+  alc: string;
+  vol: string;
+  origin: string;
+  serve: string;
+  meta_title: string;
+  meta_description: string;
+  slug: string;
+  created_at: string;
+  updated_at: string;
+};
 
 export default function OurWinesSlider({ wines }: any) {
   const [index, setIndex] = useState(0);
@@ -64,7 +83,7 @@ export default function OurWinesSlider({ wines }: any) {
                     slideIndex * itemsPerSlide,
                     slideIndex * itemsPerSlide + itemsPerSlide,
                   )
-                  .map((wine) => (
+                  .map((wine: Wine) => (
                     <Link
                       href={`/wines/${wine.slug}`}
                       key={wine.id}

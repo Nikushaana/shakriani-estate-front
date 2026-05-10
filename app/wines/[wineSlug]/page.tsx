@@ -92,7 +92,7 @@ export default async function Page({
           />
         </div>
         <div className="grid max-md:grid-cols-1 px-[16px] grid-cols-2 gap-20 max-w-340 w-full">
-          <div className="relative w-full max-md:aspect-square">
+          <div className="relative w-full h-full aspect-square max-md:aspect-auto">
             {/* <Image
               src={`${wine.image}`}
               alt={`${wine.image_alt}`}
