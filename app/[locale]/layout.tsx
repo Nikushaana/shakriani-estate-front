@@ -48,7 +48,7 @@ export default async function RootLayout({
   setRequestLocale(locale)
 
   return (
-    <html lang="en" className={`${inter.variable} ${tribun.variable}`}>
+    <html className={`${inter.variable} ${tribun.variable}`}>
       <body className="bg-[#E7EEE7]">
         <NextIntlClientProvider>
           <Header />
