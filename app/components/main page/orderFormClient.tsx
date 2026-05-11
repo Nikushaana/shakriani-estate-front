@@ -146,7 +146,7 @@ export default function OrderFormClient({ bannerVideos }: any) {
       ref={ref}
       className="relative py-[80px] px-2 flex flex-col items-center justify-center overflow-hidden "
     >
-      {inView && (
+      {inView ? (
         <video
           poster="/media/wineyard.png"
           autoPlay
@@ -162,6 +162,12 @@ export default function OrderFormClient({ bannerVideos }: any) {
             type="video/webm"
           />
         </video>
+      ) : (
+        <img
+          src="/media/wineyard.png"
+          alt="background"
+          className="absolute inset-0 w-full h-full object-cover object-center"
+        />
       )}
       <div
         className="relative z-10 rounded-[20px] text-white max-w-300 w-full py-[40px] px-[16px] flex flex-col
