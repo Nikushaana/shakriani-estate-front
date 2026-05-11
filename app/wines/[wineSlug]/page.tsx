@@ -68,7 +68,7 @@ export default async function Page({
     },
   ];
   return (
-    <div>
+    <div className="">
       <div className="bottom-curve bg-primary flex flex-col items-center max-md:pt-40 pt-70 max-md:pb-20 px-[16px] font-[family-name:var(--font-tribun)]">
         <h1 className="max-md:text-4xl text-6xl max-md:tracking-[10px] tracking-[20px] text-white text-center max-md:flex hidden">
           SHAKRIANI ESTATE
@@ -84,7 +84,7 @@ export default async function Page({
             className="object-contain opacity-15"
           />
         </div>
-        <div className="absolute w-[2000px] h-[1000px] max-md:mt-230 mt-30 max-md:-ml-40 -ml-300">
+        <div className="absolute w-[2000px] h-[1000px] max-md:mt-230 mt-30 max-md:-ml-40 max-[1537px]:-ml-300 -ml-310">
           <Image
             src="/media/vazi.svg"
             alt="vazi image"

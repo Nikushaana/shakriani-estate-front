@@ -21,7 +21,7 @@ export async function generateMetadata() {
 
 export default function page() {
   return (
-    <div className="font-[family-name:var(--font-tribun)]">
+    <div className="font-[family-name:var(--font-tribun)] max-[1537px]:-mb-5 -mb-3">
       {/* header part */}
       <AboutUsHeader />
       {/* awards */}

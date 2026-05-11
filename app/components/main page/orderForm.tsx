@@ -4,10 +4,10 @@ export default async function OrderForm() {
   const bannerVideosRes = await fetch(
     `${process.env.NEXT_PUBLIC_API_URL}/bannerVideos`,
     {
-      cache: "no-store",
+      next: { revalidate: 3600 },
     },
   );
   const bannerVideos = await bannerVideosRes.json();
 
-  return <OrderFormClient bannerVideos={bannerVideos}/>;
+  return <OrderFormClient bannerVideos={bannerVideos} />;
 }

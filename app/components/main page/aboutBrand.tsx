@@ -3,7 +3,7 @@ import Image from "next/image";
 export default function AboutBrand() {
   return (
     <div className="relative flex flex-col items-center overflow-hidden">
-      <div className="absolute max-md:-ml-80 -ml-240 -mt-15 max-md:h-[800px] h-[1200px] w-[2000px]">
+      <div className="absolute max-md:-ml-80 max-[1537px]:-ml-240 max-[1537px]:-mt-15 -ml-260 -mt-25 max-md:h-[800px] h-[1200px] w-[2000px]">
         <Image
           src="/media/vazi.svg"
           alt="vazi image"

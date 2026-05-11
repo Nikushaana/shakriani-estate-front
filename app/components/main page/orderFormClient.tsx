@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { toast } from "react-hot-toast";
 import { z } from "zod";
 
@@ -15,6 +15,28 @@ const orderSchema = z.object({
 });
 
 export default function OrderFormClient({ bannerVideos }: any) {
+  const ref = useRef<HTMLDivElement | null>(null);
+  const [inView, setInView] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setInView(true);
+        }
+      },
+      {
+        threshold: 0.2,
+      },
+    );
+
+    if (ref.current) {
+      observer.observe(ref.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
   const [formData, setFormData] = useState({
     fullName: "",
     mobile: "",
@@ -120,21 +142,31 @@ export default function OrderFormClient({ bannerVideos }: any) {
   };
 
   return (
-    <div className="relative py-[80px] flex flex-col items-center justify-center    overflow-hidden">
-      {bannerVideos && (
+    <div
+      ref={ref}
+      className="relative py-[80px] px-2 flex flex-col items-center justify-center overflow-hidden "
+    >
+      {inView && (
         <video
-          src={`${bannerVideos[0]?.video}`}
+          poster="/media/wineyard.png"
           autoPlay
           loop
           muted
           playsInline
           preload="none"
-          className="absolute inset-0 w-full h-full object-cover object-center"
-        />
+          aria-hidden="true"
+          className="absolute inset-0 w-full h-full object-cover object-center pointer-events-none"
+        >
+          <source
+            src="/media/vlc-record-2026-05-10-15h19m25s-kai 1.MP4- (1).webm"
+            type="video/webm"
+          />
+        </video>
       )}
       <div
         className="relative z-10 rounded-[20px] text-white max-w-300 w-full py-[40px] px-[16px] flex flex-col
-       items-center bg-[#8E997E33] backdrop-blur-[3px]"
+       items-center bg-[#8e997e62]"
+        //  bg-[#8E997E33] backdrop-blur-[3px]
       >
         <h1 className="text-[40px] font-extrabold text-center">
           Leave your order here
@@ -220,6 +252,7 @@ export default function OrderFormClient({ bannerVideos }: any) {
           </label>
         </div>
         <button
+          type="button"
           onClick={handleSubmit}
           disabled={loading}
           className="text-white bg-secondary hover:bg-[#64744C] focus:bg-[#44552B] duration-100 cursor-pointer rounded-[10px] h-[50px] max-w-[300px] w-full mt-[60px] flex items-center justify-center gap-8"

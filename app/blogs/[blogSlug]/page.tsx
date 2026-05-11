@@ -62,7 +62,7 @@ export default async function Page({
       </FadeUp>
 
       {/* blog details */}
-      <div className="overflow-hidden relative max-md:mb-30 max-md:my-0 my-30 flex flex-col items-center">
+      <div className="overflow-hidden relative max-md:pb-30 max-md:my-0 my-30 flex flex-col items-center">
         <div className="absolute w-[400px] h-[400px] max-md:-mr-30 max-md:mt-10 -mr-360 rotate-150 z-0">
           <Image
             src="/media/layer.svg"

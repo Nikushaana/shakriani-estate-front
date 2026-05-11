@@ -46,7 +46,7 @@ export default async function OurWines() {
           {wines.map((wine: Wine) => (
             <FadeUp key={wine.id}>
               <div className="grid max-md:grid-cols-1 grid-cols-2 gap-2">
-                <div className="relative">
+                <div className="relative flex items-center justify-center">
                   {/* <Image
                   src={`${wine.image}`}
                   alt={`${wine.image_alt}`}
