@@ -1,6 +1,7 @@
 import OrderForm from "../components/main page/orderForm";
 import WinesHeader from "../components/wines/winesHeader";
 import OurWines from "../components/wines/ourWines";
+import FadeUp from "../components/animations/FadeUp";
 
 export async function generateMetadata() {
   return {
@@ -28,7 +29,9 @@ export default function page() {
       {/* our wines */}
       <OurWines />
       {/* order form */}
-      <OrderForm />
+      <FadeUp>
+        <OrderForm />
+      </FadeUp>
     </div>
   );
 }

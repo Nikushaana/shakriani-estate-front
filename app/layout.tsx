@@ -6,6 +6,7 @@ import Header from "./components/header";
 import BurgerMenu from "./components/burgerMenu";
 import localFont from "next/font/local";
 import { Toaster } from "react-hot-toast";
+import SmoothScrollProvider from "./components/providers/SmoothScrollProvider";
 
 export const metadata: Metadata = {
   title: "Shakriani estate",
@@ -32,7 +33,9 @@ export default function RootLayout({
     <html lang="en" className={`${inter.variable} ${tribun.variable}`}>
       <body className="bg-[#E7EEE7]">
         <Header />
-        {children}
+        <SmoothScrollProvider>
+          {children}
+          </SmoothScrollProvider>
         <Footer />
 
         <BurgerMenu />

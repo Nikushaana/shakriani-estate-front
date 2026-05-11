@@ -1,4 +1,5 @@
 import Image from "next/image";
+import FadeUp from "../animations/FadeUp";
 
 type Award = {
   id: string;
@@ -41,39 +42,44 @@ export default async function Awards() {
         />
       </div>
       <div className="max-w-300 w-full text-center max-lg:space-y-10 space-y-30 px-[16px]">
-        <h1 className="text-primary max-md:text-[36px] text-[48px] font-extrabold tracking-[20px] ">
-          AWARDS
-        </h1>
+        <FadeUp>
+          <h1 className="text-primary max-md:text-[36px] text-[48px] font-extrabold tracking-[20px] ">
+            AWARDS
+          </h1>
+        </FadeUp>
         {awards.map((award: Award, index: number) => {
           return (
             <div key={award.id} className="max-lg:space-y-10 space-y-30">
-              <div
-                className={`grid max-lg:grid-cols-1 grid-cols-2 max-lg:gap-0 gap-40`}
-              >
+              <FadeUp>
                 <div
-                  className={`relative flex items-center justify-center aspect-square max-lg:aspect-video max-lg:mt-10 max-lg:order-0 ${index % 2 !== 0 ? "order-2" : ""}`}
+                  className={`grid max-lg:grid-cols-1 grid-cols-2 max-lg:gap-0 gap-40`}
                 >
-                  {/* <Image
+                  <div
+                    className={`relative flex items-center justify-center aspect-square max-lg:aspect-video max-lg:mt-10 max-lg:order-0 ${index % 2 !== 0 ? "order-2" : ""}`}
+                  >
+                    {/* <Image
                     src={`${process.env.NEXT_PUBLIC_API_URL}${award.image}`}
                     alt={`${award.id}`}
                     fill
                     unoptimized
                     className="object-cover"
                   /> */}
-                  <img
-                    src={`${award.image}`}
-                    alt={award.id}
-                    className="object-contain max-w-full max-h-full rounded-[11px]"
-                  />
+                    <img
+                      src={`${award.image}`}
+                      alt={award.id}
+                      className="object-contain max-w-full max-h-full rounded-[11px]"
+                    />
+                  </div>
+                  <p
+                    className={`text-[24px] text-start font-normal flex items-center max-lg:my-10 my-20 max-lg:px-[16px] text-secondary ${
+                      index % 2 !== 0 ? "order-1" : ""
+                    }`}
+                  >
+                    {award.text}
+                  </p>
                 </div>
-                <p
-                  className={`text-[24px] text-start font-normal flex items-center max-lg:my-10 my-20 max-lg:px-[16px] text-secondary ${
-                    index % 2 !== 0 ? "order-1" : ""
-                  }`}
-                >
-                  {award.text}
-                </p>
-              </div>
+              </FadeUp>
+
               {awards.length - 1 !== index && (
                 <hr className="max-md:w-[80%] w-100 mx-auto border-primary" />
               )}

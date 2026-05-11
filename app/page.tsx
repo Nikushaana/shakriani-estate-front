@@ -4,6 +4,7 @@ import AboutBrand from "./components/main page/aboutBrand";
 import Numbers from "./components/main page/numbers";
 import OrderForm from "./components/main page/orderForm";
 import OurWinesSlider from "./components/main page/ourWinesSlider";
+import FadeUp from "./components/animations/FadeUp";
 
 export default async function Home() {
   const winesRes = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/wines`, {
@@ -16,22 +17,32 @@ export default async function Home() {
       {/* header part  */}
       <HeaderPart />
       {/* about brand section */}
-      <AboutBrand />
+      <FadeUp>
+        <AboutBrand />
+      </FadeUp>
       {/* our wines */}
-      <OurWinesSlider wines={wines} />
+      <FadeUp>
+        <OurWinesSlider wines={wines} />
+      </FadeUp>
       {/* numbers */}
-      <Numbers />
+      <FadeUp>
+        <Numbers />
+      </FadeUp>
       {/* order form */}
-      <OrderForm />
+      <FadeUp>
+        <OrderForm />
+      </FadeUp>
       {/* logo */}
-      <div className="h-[230px] relative my-[70px] mx-[16px]">
-        <Image
-          src="/media/logo.svg"
-          alt="logo image"
-          fill
-          className="object-contain"
-        />
-      </div>
+      <FadeUp>
+        <div className="h-[230px] relative my-[70px] mx-[16px]">
+          <Image
+            src="/media/logo.svg"
+            alt="logo image"
+            fill
+            className="object-contain"
+          />
+        </div>
+      </FadeUp>
     </div>
   );
 }

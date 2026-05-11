@@ -1,3 +1,4 @@
+import FadeUp from "../components/animations/FadeUp";
 import OrderForm from "../components/main page/orderForm";
 
 export async function generateMetadata() {
@@ -26,22 +27,32 @@ export default async function Page() {
       {/* contact details */}
       <div className="my-40 max-md:my-20 flex flex-col items-center">
         <div className="max-w-340 w-full space-y-10 px-[16px] font-[family-name:var(--font-tribun)] text-primary font-normal text-[20px]">
-          <p className="">Tel: +995 599 97 77 18</p>
-          <p className="">E-mail: tskhovrebadzenika16@gmail.com</p>
-          <p className="">
-            Address: Georgia, Telavi, Nikoloz Muskhelishvili N33
-          </p>
+          <FadeUp>
+            <p className="">Tel: +995 599 97 77 18</p>
+          </FadeUp>
+          <FadeUp>
+            <p className="">E-mail: tskhovrebadzenika16@gmail.com</p>
+          </FadeUp>
+          <FadeUp>
+            <p className="">
+              Address: Georgia, Telavi, Nikoloz Muskhelishvili N33
+            </p>
+          </FadeUp>
 
-          <iframe
-            src="https://www.google.com/maps?q=41.996758158713796,45.58119775282978&t=k&z=17&output=embed"
-            loading="lazy"
-            className="w-full h-[380px] mt-30 rounded-[10px]"
-          ></iframe>
+          <FadeUp>
+            <iframe
+              src="https://www.google.com/maps?q=41.996758158713796,45.58119775282978&t=k&z=17&output=embed"
+              loading="lazy"
+              className="w-full h-[380px] mt-30 rounded-[10px]"
+            ></iframe>
+          </FadeUp>
         </div>
       </div>
 
       {/* order form */}
-      <OrderForm />
+      <FadeUp>
+        <OrderForm />
+      </FadeUp>
     </div>
   );
 }

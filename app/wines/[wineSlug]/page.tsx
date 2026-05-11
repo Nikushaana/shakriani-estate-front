@@ -1,3 +1,4 @@
+import FadeUp from "@/app/components/animations/FadeUp";
 import Image from "next/image";
 
 export async function generateMetadata({
@@ -92,55 +93,59 @@ export default async function Page({
           />
         </div>
         <div className="grid max-md:grid-cols-1 px-[16px] grid-cols-2 gap-20 max-w-340 w-full">
-          <div className="relative w-full h-full aspect-square max-md:aspect-auto">
-            {/* <Image
+          <FadeUp>
+            <div className="relative w-full h-full aspect-square max-md:aspect-auto">
+              {/* <Image
               src={`${wine.image}`}
               alt={`${wine.image_alt}`}
               fill
               className="object-contain"
             /> */}
-            <img
-              src={`${wine.image}`}
-              alt={wine.image_alt}
-              className="object-contain w-full h-full"
-            />
-          </div>
-          <div className="rounded-[11px] border border-[#8E997E] bg-[#8E997E3D] max-md:px-[16px] p-15 flex flex-col items-center gap-[57px]">
-            <h1 className="font-(family-name:--font-inter) text-[24px] font-extrabold text-primary tracking-[12px] uppercase">
-              {wine.name}
-            </h1>
-            <div className="grid max-md:grid-cols-3 grid-cols-7 max-md:gap-10 items-center max-md:px-10 font-(family-name:--font-inter)">
-              {details.map((detail, index) => {
-                const showDesktopDivider = index !== details.length - 1;
-
-                // max-md only after item 1 and 3 (indexes 0 and 2)
-                const showMobileDivider = index === 0 || index === 2;
-
-                return (
-                  <div key={detail.id} className="contents">
-                    <div className="py-3 flex flex-col items-center justify-center gap-[22px] text-center text-primary">
-                      <p className="text-[14px] tracking-[5px] whitespace-nowrap">
-                        {detail.title}
-                      </p>
-                      <p className="text-[12px] tracking-[4px] whitespace-nowrap">
-                        {detail.value}
-                      </p>
-                    </div>
-
-                    {showDesktopDivider && (
-                      <div className="hidden md:block w-[1px] h-full bg-[#8E997E] mx-auto"></div>
-                    )}
-                    {showMobileDivider && (
-                      <div className="block md:hidden w-[1px] h-full bg-[#8E997E] mx-auto"></div>
-                    )}
-                  </div>
-                );
-              })}
+              <img
+                src={`${wine.image}`}
+                alt={wine.image_alt}
+                className="object-contain w-full h-full"
+              />
             </div>
-            <p className="font-[family-name:var(--font-tribun)] text-primary font-bold tracking-[1px]">
-              {wine.description}
-            </p>
-          </div>
+          </FadeUp>
+          <FadeUp>
+            <div className="rounded-[11px] border border-[#8E997E] bg-[#8E997E3D] max-md:px-[16px] p-15 flex flex-col items-center gap-[57px]">
+              <h1 className="font-(family-name:--font-inter) text-[24px] font-extrabold text-primary tracking-[12px] uppercase">
+                {wine.name}
+              </h1>
+              <div className="grid max-md:grid-cols-3 grid-cols-7 max-md:gap-10 items-center max-md:px-10 font-(family-name:--font-inter)">
+                {details.map((detail, index) => {
+                  const showDesktopDivider = index !== details.length - 1;
+
+                  // max-md only after item 1 and 3 (indexes 0 and 2)
+                  const showMobileDivider = index === 0 || index === 2;
+
+                  return (
+                    <div key={detail.id} className="contents">
+                      <div className="py-3 flex flex-col items-center justify-center gap-[22px] text-center text-primary">
+                        <p className="text-[14px] tracking-[5px] whitespace-nowrap">
+                          {detail.title}
+                        </p>
+                        <p className="text-[12px] tracking-[4px] whitespace-nowrap">
+                          {detail.value}
+                        </p>
+                      </div>
+
+                      {showDesktopDivider && (
+                        <div className="hidden md:block w-[1px] h-full bg-[#8E997E] mx-auto"></div>
+                      )}
+                      {showMobileDivider && (
+                        <div className="block md:hidden w-[1px] h-full bg-[#8E997E] mx-auto"></div>
+                      )}
+                    </div>
+                  );
+                })}
+              </div>
+              <p className="font-[family-name:var(--font-tribun)] text-primary font-bold tracking-[1px]">
+                {wine.description}
+              </p>
+            </div>
+          </FadeUp>
         </div>
       </div>
     </div>

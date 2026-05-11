@@ -128,6 +128,7 @@ export default function OrderFormClient({ bannerVideos }: any) {
           loop
           muted
           playsInline
+          preload="none"
           className="absolute inset-0 w-full h-full object-cover object-center"
         />
       )}
