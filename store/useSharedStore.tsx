@@ -16,27 +16,27 @@ export const useSharedStore = create<SharedStore>((set) => ({
   routes: [
     {
       id: 1,
-      name: "Home",
+      name: "home",
       route: "",
     },
     {
       id: 2,
-      name: "About Us",
+      name: "aboutUs",
       route: "about-us",
     },
     {
       id: 3,
-      name: "Wines",
+      name: "wines",
       route: "wines",
     },
     {
       id: 4,
-      name: "Blogs",
+      name: "blogs",
       route: "blogs",
     },
     {
       id: 5,
-      name: "Contact",
+      name: "contact",
       route: "contact",
     },
   ],

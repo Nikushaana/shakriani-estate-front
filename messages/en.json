@@ -1,0 +1,50 @@
+{
+  "aboutUs": {
+    "header": "At Shakriani Estate, winemaking is more than a profession – it is a\n            family tradition passed down with pride and dedication. Located in\n            the vineyards of Kakheti, our winery is built on respect for nature,\n            patience, and a deep connection to Georgian wine culture. Each\n            harvest represents the work of our family and our commitment to\n            producing authentic wines. From the vineyards to the cellar, we\n            carefully guide every stage of the process to ensure that every\n            bottle carries the spirit of our land and the story of our family."
+  },
+  "footer": {
+    "allRightsReserved": "All Rights Reserved",
+    "privacyPolicy": "Privacy Policy",
+    "termsAndConditions": "Terms And Conditions"
+  },
+  "header": {
+    "aboutUs": "About Us",
+    "blogs": "Blogs",
+    "contact": "Contact",
+    "home": "Home",
+    "wines": "Wines"
+  },
+  "main": {
+    "aboutOurBrand": "About Our Brand",
+    "aboutOurBrandText": "Shakriani Estate is a family winery located in the heart of Kakheti,\n          Georgia. Our wines are crafted from grapes grown in our own vineyards\n          in the village of Shakriani, where tradition and nature come together.\n          Using the ancient Georgian qvevri method, we create authentic wines\n          that reflect the character of our land and heritage.",
+    "address": "Address",
+    "annualProduction": "Annual Production",
+    "awards": "Awards",
+    "details": "Details",
+    "email": "Email",
+    "header": "SINCE 2007",
+    "leaveYourOrderHere": "Leave your order here",
+    "mob": "Mob",
+    "nameSurname": "Name, Surname",
+    "ourWines": "Our Wines",
+    "seeMore": "See More",
+    "send": "send",
+    "sending": "Sending",
+    "yearsInBusiness": "Years in Business"
+  },
+  "order": {
+    "detailsAreRequired": "Details are required",
+    "fullNameIsRequired": "Full name is required",
+    "mobileNumberIsRequired": "Mobile number is required",
+    "orderSentSuccessfully": "Order sent successfully!",
+    "pleaseEnterAValidEmail": "Please enter a valid email",
+    "smthWrong": "Something went wrong!"
+  },
+  "wines": {
+    "alc/Vol": "Alc / Vol",
+    "view": "VIEW",
+    "year": "Year",
+    "origin": "Origin",
+    "serve": "Serve"
+  }
+}
