@@ -1,6 +1,6 @@
 "use client";
 
-import { Link } from "@/i18n/navigation";
+import { Link, usePathname } from "@/i18n/navigation";
 import { useSharedStore } from "@/store/useSharedStore";
 import { useTranslations } from "next-intl";
 import { FiFacebook, FiInstagram } from "react-icons/fi";
@@ -9,6 +9,7 @@ export default function Footer() {
   const t = useTranslations("header");
   const t1 = useTranslations("footer");
   const { routes } = useSharedStore();
+  const pathname = usePathname();
 
   const routes2 = [
     {
@@ -36,7 +37,9 @@ export default function Footer() {
   ];
 
   return (
-    <div className="top-curve bg-primary text-white pt-30 flex flex-col gap-20 items-center justify-center">
+    <div
+      className={`top-curve bg-primary text-white pt-30 ${pathname.startsWith("/admin") ? "hidden" : "flex"} flex-col gap-20 items-center justify-center`}
+    >
       <div className="max-w-300 w-full flex flex-col items-center px-[16px]">
         <h1 className="max-md:w-auto w-full text-[20px] font-(family-name:--font-inter) font-bold">
           SHAKRIANI ESTATE

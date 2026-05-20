@@ -28,7 +28,7 @@ export default function Header() {
   }, [menu]);
 
   return (
-    <div className="absolute top-[50px] left-1/2 -translate-x-1/2 z-30 h-[70px] p-[10px] max-w-300 w-full max-md:px-10 px-[70px] rounded-[20px] md:bg-[#5A675B80] text-white flex justify-between max-md:shadow-none shadow-[0_0_10px_rgba(140,140,140)]">
+    <div className={`absolute top-[50px] left-1/2 -translate-x-1/2 z-30 h-[70px] p-[10px] max-w-300 w-full max-md:px-10 px-[70px] rounded-[20px] md:bg-[#5A675B80] text-white ${pathname.startsWith("/admin") ? "hidden" : "flex"} justify-between max-md:shadow-none shadow-[0_0_10px_rgba(140,140,140)]`}>
       <Link href={`/`} className="relative w-[41px]">
         <Image
           src="/media/SmallLogo.svg"
