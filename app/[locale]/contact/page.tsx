@@ -39,20 +39,20 @@ export default async function Page({
       <div className="my-40 max-md:my-20 flex flex-col items-center">
         <div className="max-w-340 w-full space-y-10 px-[16px] font-[family-name:var(--font-tribun)] text-primary font-normal text-[20px]">
           <FadeUp>
-            <p className="">{t("mob")}: +995 599 97 77 18</p>
+            <p className="">{t("mob")}: +995 599 977 718</p>
           </FadeUp>
           <FadeUp>
-            <p className="">{t("email")}: tskhovrebadzenika16@gmail.com</p>
+            <p className="">{t("email")}: shakrianiestate@gmail.com</p>
           </FadeUp>
           <FadeUp>
             <p className="">
-              {t("address")}: Georgia, Telavi, Nikoloz Muskhelishvili N33
+              {t("address")}: Georgia, Telavi, Niko Muskhelishvili N33
             </p>
           </FadeUp>
 
           <FadeUp>
             <iframe
-              src="https://www.google.com/maps?q=41.996758158713796,45.58119775282978&t=k&z=17&output=embed"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d296.65102954307594!2d45.4903215829485!3d41.911197656435455!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x404433bb794ff943%3A0x5f99571b1d9aadfa!2sShakriani%20Estate%20Winery!5e1!3m2!1sen!2sge!4v1779359285559!5m2!1sen!2sge"
               loading="lazy"
               className="w-full h-[380px] mt-30 rounded-[10px]"
             ></iframe>
