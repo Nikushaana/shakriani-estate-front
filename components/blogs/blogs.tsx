@@ -42,7 +42,7 @@ export default async function Blogs() {
         {blogs.map((blog: Blog, index: number) => {
           return (
             <div key={blog.id} className="max-md:space-y-20 space-y-30">
-              <div className="grid max-lg:grid-cols-1 grid-cols-2 gap-10 z-10">
+              <div className="grid max-lg:grid-cols-1 grid-cols-2 items-center gap-10 z-10">
                 <FadeUp>
                   <div className="relative rounded-[10px] overflow-hidden max-h-[600px] w-full h-full max-md:aspect-square max-lg:aspect-video">
                     <img

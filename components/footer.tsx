@@ -15,12 +15,12 @@ export default function Footer() {
     {
       id: 1,
       name: "termsAndConditions",
-      route: "/",
+      route: "terms-and-conditions",
     },
     {
       id: 2,
       name: "privacyPolicy",
-      route: "/",
+      route: "privacy-policy",
     },
   ];
 
@@ -45,7 +45,7 @@ export default function Footer() {
         <h1 className="max-md:w-auto w-full text-[20px] font-(family-name:--font-inter) font-bold">
           SHAKRIANI ESTATE
         </h1>
-        <div className="grid max-md:grid-cols-1 grid-cols-2 max-md:gap-8 max-md:w-auto w-full max-md:my-8 my-5">
+        <div className="grid max-md:grid-cols-1 grid-cols-3 max-md:gap-8 max-md:w-auto w-full max-md:my-8 my-5">
           <ul className="space-y-3">
             {routes.map((route) => (
               <li key={route.id}>
@@ -58,7 +58,7 @@ export default function Footer() {
               </li>
             ))}
           </ul>
-          {/* <ul className="space-y-3">
+          <ul className="space-y-3">
             {routes2.map((route) => (
               <li key={route.id}>
                 <Link
@@ -69,7 +69,7 @@ export default function Footer() {
                 </Link>
               </li>
             ))}
-          </ul> */}
+          </ul>
           <div className="space-y-3 justify-self-end">
             <ul className="space-y-3 max-md:text-left text-right font-(family-name:--font-inter) font-medium">
               <li>Telavi, Kakheti, Georgia</li>
