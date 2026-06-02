@@ -35,15 +35,17 @@ export default async function Page({
       <div className="bottom-curve bg-primary pt-70 max-md:pt-40"></div>
 
       <div className="my-40 max-md:my-20 flex flex-col items-center">
-        <div className="max-w-340 w-full space-y-10 px-[16px] font-[family-name:var(--font-tribun)] text-primary font-normal text-[20px] leading-relaxed">
+        <div className="max-w-340 w-full px-[16px] font-[family-name:var(--font-tribun)] text-primary">
+
           <FadeUp>
-            <h1 className="text-primary max-md:text-[36px] text-[48px] font-extrabold tracking-[20px] mb-10">
+            <h1 className="text-primary max-md:text-[32px] text-[48px] font-extrabold tracking-[10px] mb-10 text-center">
               TERMS AND CONDITIONS
             </h1>
 
-            <div className="space-y-8 whitespace-pre-line">
-              <p>
-                {`Shakriani Estate
+            <div className="text-[18px] max-md:text-[16px] leading-relaxed break-words">
+              <pre className="whitespace-pre-wrap font-[inherit]">
+
+{`Shakriani Estate
 
 PLEASE READ THESE TERMS AND CONDITIONS CAREFULLY. BY ACCESSING OR USING THIS WEBSITE, YOU ACKNOWLEDGE THAT YOU HAVE READ, UNDERSTOOD, AND AGREE TO BE LEGALLY BOUND BY THESE TERMS. IF YOU DO NOT AGREE, YOU MUST IMMEDIATELY DISCONTINUE USE OF THE WEBSITE AND SUBMIT NO FURTHER INQUIRIES.
 
@@ -61,119 +63,69 @@ PLEASE READ THESE TERMS AND CONDITIONS CAREFULLY. BY ACCESSING OR USING THIS WEB
 You represent that you are of legal drinking age in your jurisdiction and have the legal capacity to enter into these Terms.
 
 2.2 Permitted Purpose
-The Website is provided solely for browsing our wine catalog, viewing product details (including price, ABV, vintage, and descriptions), and submitting non-binding Order Requests. Any other use is prohibited.
+The Website is provided solely for browsing our wine catalog, viewing product details (including price, ABV, vintage, and descriptions), and submitting non-binding Order Requests.
 
 2.3 Prohibited Conduct
-You agree not to: (a) use the Website unlawfully; (b) attempt unauthorized access; (c) copy, scrape, or reproduce Content without consent; (d) disrupt Website functionality; (e) submit false or misleading information; (f) use the Website to promote excessive or underage drinking.
+You agree not to use the Website unlawfully, scrape content, or misuse the platform.
 
 2.4 Availability
-We may suspend, modify, or discontinue the Website at any time without notice and shall bear no liability for any unavailability
+We may suspend or modify the Website at any time without liability.
 
 3. PRODUCT INFORMATION AND DISCLAIMERS
-3.1 General Information
-All product listings, descriptions, ABV, vintage years, and prices are provided for informational purposes only and do not constitute a binding offer to sell.
-
-3.2 Vintage Variation
-Wine is an agricultural product subject to vintage variation. The vintage displayed is indicative; the actual vintage supplied (if any sale is later confirmed) may differ due to stock rotation. We reserve the right to substitute equivalent or superior vintages without notice.
-
-3.3 Product Images
-Images are for illustration only. Actual labels, packaging, and bottle appearance may vary slightly due to production changes or display settings. No guarantee is given that the Product will exactly match the visual representation.
-
-3.4 Pricing and Availability
-Prices are in [Insert Currency] and may change without notice. All Products are offered subject to availability, which is confirmed only upon our separate written acceptance. We do not guarantee that any item will be in stock.
-
-3.5 Errors
-We reserve the right to correct any typographical errors, inaccuracies, or omissions in product descriptions, pricing, or availability at any time without liability.
+3.1 Product details are for informational purposes only.
+3.2 Vintage may vary.
+3.3 Images are illustrative only.
+3.4 Prices and availability may change.
+3.5 Errors may be corrected at any time.
 
 4. ORDER REQUESTS
-4.1 Non-Binding Inquiry
-Submitting an Order Request is an expression of interest only. No contract of sale is formed at that point, and we are under no obligation to supply.
+4.1 Requests are non-binding.
+4.2 No online purchases.
+4.3 We respond manually to inquiries.
+4.4 Contract is formed only upon written confirmation.
+4.5 We may refuse requests.
+4.6 You are responsible for accurate data.
 
-4.2 No Online Transactions
-The Website does not support direct online purchases, automatic confirmations, or payment processing. All transactions are finalized off-line.
+5. AGE RESTRICTIONS AND ALCOHOL
+5.1 You must be of legal drinking age.
+5.2 We may request verification.
+5.3 Drink responsibly.
+5.4 Alcohol may cause health risks.
+5.5 We are not liable for misuse.
 
-4.3 Review and Response
-We will review your Order Request and respond separately, typically by email or telephone. Our response may confirm availability, provide a final price, request additional information, or decline the request at our sole discretion.
-
-4.4 Formation of Contract
-A binding sale contract arises only when we issue a formal written order confirmation expressly accepting your Inquiry, subject to these Terms and any supplementary conditions contained therein.
-
-4.5 Right to Refuse
-We may reject any Order Request, limit quantities, or impose conditions without reason and without liability.
-
-4.6 Accuracy of Information
-You are responsible for the completeness and accuracy of the details you submit. We are not liable for any failure to respond caused by incorrect information.
-
-5. AGE RESTRICTIONS AND ALCOHOL CONSUMPTION
-5.1 Legal Drinking Age
-You confirm that you are of legal age to purchase and consume alcohol in your jurisdiction. We do not supply to minors.
-
-5.2 Age Verification
-We may require proof of age and identity at any stage. Failure to provide satisfactory verification will result in immediate cancellation of any pending order without liability.
-
-5.3 Responsible Consumption
-Shakriani Estate advocates moderate, responsible drinking. Information on ABV is supplied to assist informed choices and compliance with health guidelines.
-
-5.4 Health Warning
-Alcohol consumption may impair abilities and cause health risks. Do not drink and drive. We make no health representations, and consumers should consult relevant guidelines.
-
-5.5 Misuse Disclaimer
-To the fullest extent permitted by law, Shakriani Estate accepts no liability for loss, injury, or damage caused by the misuse, excessive consumption, or improper storage of our wines, whether by you or any third party.
-
-6. INTELLECTUAL PROPERTY RIGHTS
-6.1 Ownership
-All Content, including text, images, logos, and trade dress, is the exclusive property of Shakriani Estate or its licensors and is protected by intellectual property laws.
-
-6.2 Trademarks
-All marks appearing on the Website are owned by us or third parties. No license is granted, and any unauthorized use is strictly prohibited.
-
-6.3 Limited License
-We grant you a revocable, non-exclusive, non-transferable license to access the Website for personal, non-commercial browsing and inquiry submission only. All other rights are reserved.
-
-6.4 Restrictions
-You may not reproduce, modify, distribute, or create derivative works from any Content without our prior written consent.
+6. INTELLECTUAL PROPERTY
+All content belongs to Shakriani Estate and may not be copied.
 
 7. LIMITATION OF LIABILITY
-7.1 No Warranties
-The Website and all Content are provided “as is” without any warranties, express or implied.
+We provide the Website “as is” and limit liability to the fullest extent permitted by law.
 
-7.2 Exclusion of Damages
-We are not liable for indirect or consequential damages.
-
-7.3 Aggregate Liability
-Our liability is limited to the amount paid (or nominal amount if no purchase).
-
-7.4 Legal Exceptions
-Nothing excludes liability that cannot legally be limited.
-
-7.5 Consumer Rights
-You retain all statutory rights.
-
-8. PRIVACY AND DATA USE
-Your data is governed by our Privacy Policy.
+8. PRIVACY
+Your data is handled according to our Privacy Policy.
 
 9. THIRD-PARTY LINKS
-We are not responsible for external sites.
+We are not responsible for external websites.
 
 10. INDEMNIFICATION
-You agree to hold us harmless from claims arising from misuse.
+You agree to hold us harmless from misuse-related claims.
 
-11. GOVERNING LAW AND DISPUTES
-Governed by laws of Georgia.
+11. GOVERNING LAW
+Governed by the laws of Georgia.
 
-12. CHANGES TO TERMS
-We may update Terms at any time.
+12. CHANGES
+We may update these Terms at any time.
 
 13. GENERAL PROVISIONS
-Entire agreement, severability, waiver, force majeure, assignment, headings apply.
+Standard legal clauses apply.
 
-14. CONTACT INFORMATION
+14. CONTACT
 Email: shakrianiestate@gmail.com
-Telephone: +995 599 977 718
+Phone: +995 599 977 718
 
 © ${new Date().getFullYear()} Shakriani Estate. All rights reserved.`}
-              </p>
+
+              </pre>
             </div>
+
           </FadeUp>
         </div>
       </div>
