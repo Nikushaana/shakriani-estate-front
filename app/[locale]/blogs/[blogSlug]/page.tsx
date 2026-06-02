@@ -1,4 +1,5 @@
 import FadeUp from "@/components/animations/FadeUp";
+import { pickLocale } from "@/components/wines/ourWines";
 import { setRequestLocale } from "next-intl/server";
 import Image from "next/image";
 
@@ -34,10 +35,10 @@ export async function generateMetadata({
 export default async function Page({
   params,
 }: {
-  params: Promise<{ blogSlug: string; locale: string }>;
+  params: Promise<{ blogSlug: string; locale: "ka" | "en" | "ru" }>;
 }) {
   const { blogSlug, locale } = await params;
-  
+
   setRequestLocale(locale);
 
   const res = await fetch(
@@ -86,16 +87,14 @@ export default async function Page({
         <div className="max-w-340 w-full max-md:space-y-20 space-y-30 px-[16px] ">
           <FadeUp>
             <div className="flex flex-col items-center ">
-              {/* <Image
-              src={`${blog.image}`}
-              alt={`${blog.image_alt}`}
-              width={600}
-              height={600}
-              className="object-cover rounded-[10px] overflow-hidden"
-              /> */}
               <img
                 src={`${blog.image}`}
-                alt={blog.image_alt}
+                alt={pickLocale(
+                  blog.image_alt,
+                  blog.image_alt_en,
+                  blog.image_alt_ru,
+                  locale,
+                )}
                 className="object-cover rounded-[10px] max-h-[500px] z-10"
               />
             </div>
@@ -103,7 +102,7 @@ export default async function Page({
 
           <FadeUp>
             <p className="font-[family-name:var(--font-tribun)] text-primary font-medium tracking-[1px] text-[20px]">
-              {blog.text}
+              {pickLocale(blog.text, blog.text_en, blog.text_ru, locale)}
             </p>
           </FadeUp>
         </div>

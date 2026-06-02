@@ -1,4 +1,5 @@
 import FadeUp from "@/components/animations/FadeUp";
+import { pickLocale } from "@/components/wines/ourWines";
 import { getTranslations } from "next-intl/server";
 import { setRequestLocale } from "next-intl/server";
 import Image from "next/image";
@@ -35,7 +36,7 @@ export async function generateMetadata({
 export default async function Page({
   params,
 }: {
-  params: Promise<{ wineSlug: string; locale: string }>;
+  params: Promise<{ wineSlug: string; locale: "ka" | "en" | "ru" }>;
 }) {
   const { wineSlug, locale } = await params;
 
@@ -65,14 +66,15 @@ export default async function Page({
     {
       id: 3,
       title: t("origin"),
-      value: `${wine.origin}`,
+      value: `${pickLocale(wine.origin, wine.origin_en, wine.origin_ru, locale)}`,
     },
     {
       id: 4,
       title: t("serve"),
-      value: `${wine.serve}`,
+      value: `${wine.serve}°C`,
     },
   ];
+
   return (
     <div className="">
       <div className="bottom-curve bg-primary flex flex-col items-center max-md:pt-40 pt-70 max-md:pb-20 px-[16px] font-[family-name:var(--font-tribun)]">
@@ -101,23 +103,22 @@ export default async function Page({
         <div className="grid max-md:grid-cols-1 px-[16px] grid-cols-2 gap-20 max-w-340 w-full">
           <FadeUp>
             <div className="relative w-full h-full aspect-square max-md:aspect-auto">
-              {/* <Image
-              src={`${wine.image}`}
-              alt={`${wine.image_alt}`}
-              fill
-              className="object-contain"
-            /> */}
               <img
                 src={`${wine.image}`}
-                alt={wine.image_alt}
+                alt={pickLocale(
+                  wine.image_alt,
+                  wine.image_alt_en,
+                  wine.image_alt_ru,
+                  locale,
+                )}
                 className="object-contain w-full h-full"
               />
             </div>
           </FadeUp>
           <FadeUp>
             <div className="rounded-[11px] border border-[#8E997E] bg-[#8E997E3D] max-md:px-[16px] p-15 flex flex-col items-center gap-[57px]">
-              <h1 className="font-(family-name:--font-inter) text-[24px] font-extrabold text-primary tracking-[12px] uppercase">
-                {wine.name}
+              <h1 className="font-(family-name:--font-inter) text-[24px] font-extrabold text-primary tracking-[12px] uppercase text-center">
+                {pickLocale(wine.name, wine.name_en, wine.name_ru, locale)}
               </h1>
               <div className="grid max-md:grid-cols-3 grid-cols-7 max-md:gap-10 items-center max-md:px-10 font-(family-name:--font-inter)">
                 {details.map((detail, index) => {
@@ -148,7 +149,12 @@ export default async function Page({
                 })}
               </div>
               <p className="font-[family-name:var(--font-tribun)] text-primary font-bold tracking-[1px]">
-                {wine.description}
+                {pickLocale(
+                  wine.description,
+                  wine.description_en,
+                  wine.description_ru,
+                  locale,
+                )}
               </p>
             </div>
           </FadeUp>

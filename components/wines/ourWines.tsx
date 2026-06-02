@@ -1,10 +1,22 @@
 import Image from "next/image";
 import { Wine } from "../main page/ourWinesSlider";
 import FadeUp from "../animations/FadeUp";
-import { getTranslations } from "next-intl/server";
+import { getLocale, getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 
+type Locale = "ka" | "en" | "ru";
+
+export function pickLocale(
+  base: string,
+  en: string,
+  ru: string,
+  locale: "ka" | "en" | "ru",
+) {
+  return locale === "en" ? en || base : locale === "ru" ? ru || base : base;
+}
+
 export default async function OurWines() {
+  const locale = (await getLocale()) as Locale;
   const t = await getTranslations("main");
   const t1 = await getTranslations("wines");
 
@@ -51,25 +63,23 @@ export default async function OurWines() {
             <FadeUp key={wine.id}>
               <div className="grid max-md:grid-cols-1 grid-cols-2 gap-2">
                 <div className="relative flex items-center justify-center">
-                  {/* <Image
-                  src={`${wine.image}`}
-                  alt={`${wine.image_alt}`}
-                  height={600}
-                  width={600}
-                  className="object-contain h-[426px]"
-                /> */}
                   <img
                     src={`${wine.image}`}
-                    alt={wine.image_alt}
+                    alt={pickLocale(
+                      wine.image_alt,
+                      wine.image_alt_en,
+                      wine.image_alt_ru,
+                      locale,
+                    )}
                     className="object-contain h-[426px]"
                   />
                 </div>
                 <div className="font-(family-name:--font-inter) flex flex-col items-start justify-center max-md:mx-auto max-md:w-60">
                   <h1 className="text-primary text-[20px] font-normal uppercase">
-                    {wine.name}
+                    {pickLocale(wine.name, wine.name_en, wine.name_ru, locale)}
                   </h1>
                   <p className="text-secondary text-[13px] font-normal mt-[15px] uppercase">
-                    {wine.type}
+                    {pickLocale(wine.type, wine.type_en, wine.type_ru, locale)}
                   </p>
                   <p className="text-secondary text-[12px] font-normal mt-[10px]">
                     {wine.year}

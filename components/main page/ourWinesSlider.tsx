@@ -1,33 +1,49 @@
 "use client";
 
 import { Link } from "@/i18n/navigation";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
 import { FaArrowRightLong } from "react-icons/fa6";
 import { TfiArrowCircleLeft, TfiArrowCircleRight } from "react-icons/tfi";
+import { pickLocale } from "../wines/ourWines";
 
 export type Wine = {
   id: string;
   image: string;
   image_alt: string;
+  image_alt_en: string;
+  image_alt_ru: string;
   name: string;
+  name_en: string;
+  name_ru: string;
   type: string;
+  type_en: string;
+  type_ru: string;
   year: string;
   price: string;
   description: string;
+  description_en: string;
+  description_ru: string;
   alc: string;
   vol: string;
   origin: string;
+  origin_en: string;
+  origin_ru: string;
   serve: string;
   meta_title: string;
+  meta_title_en: string;
+  meta_title_ru: string;
   meta_description: string;
+  meta_description_en: string;
+  meta_description_ru: string;
   slug: string;
   created_at: string;
   updated_at: string;
 };
 
 export default function OurWinesSlider({ wines }: any) {
-  const t = useTranslations('main');
+  const locale = useLocale() as "ka" | "en" | "ru";
+  const t = useTranslations("main");
 
   const [index, setIndex] = useState(0);
 
@@ -61,7 +77,7 @@ export default function OurWinesSlider({ wines }: any) {
   return (
     <div className="top-curve pb-20 pt-30 bg-primary flex flex-col gap-20 items-center justify-center">
       <h1 className="max-md:hidden text-[64px] text-white font-extrabold">
-        {t('ourWines')}
+        {t("ourWines")}
       </h1>
       <div className="flex items-center justify-between max-md:gap-4 gap-10 w-full max-w-300 px-[16px]">
         {(itemsPerSlide == 1 ? wines.length > 1 : wines.length > 2) && (
@@ -92,24 +108,33 @@ export default function OurWinesSlider({ wines }: any) {
                       key={wine.id}
                       className="rounded-[11px] bg-gray-200 overflow-hidden relative w-[284px] h-[426px]"
                     >
-                      {/* <Image
-                        src={`${wine.image}`}
-                        alt={`${wine.image_alt}`}
-                        fill
-                        className="object-cover "
-                      /> */}
                       <img
                         src={wine.image}
-                        alt={wine.image_alt}
+                        alt={pickLocale(
+                          wine.image_alt,
+                          wine.image_alt_en,
+                          wine.image_alt_ru,
+                          locale,
+                        )}
                         className="object-cover opacity-80"
                       />
                       <div className="absolute bottom-10 left-8 border-l border-white pl-2 py-1">
                         <div className="bg-[#8E997E5C] px-1 w-[152px]">
                           <h2 className="text-[24px] text-white">
-                            {wine.name}
+                            {pickLocale(
+                              wine.name,
+                              wine.name_en,
+                              wine.name_ru,
+                              locale,
+                            )}
                           </h2>
                           <p className="text-[15px] text-primary">
-                            {wine.type}
+                            {pickLocale(
+                              wine.type,
+                              wine.type_en,
+                              wine.type_ru,
+                              locale,
+                            )}
                           </p>
                         </div>
                       </div>
@@ -129,7 +154,7 @@ export default function OurWinesSlider({ wines }: any) {
         href={"/wines"}
         className="text-white bg-secondary hover:bg-[#64744C] focus:bg-[#44552B] duration-100 rounded-[10px] h-[50px] w-[300px] flex items-center justify-center gap-8"
       >
-        <h2 className="text-[20px] font-medium">{t('seeMore')}</h2>
+        <h2 className="text-[20px] font-medium">{t("seeMore")}</h2>
         <FaArrowRightLong />
       </Link>
     </div>

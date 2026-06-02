@@ -1,22 +1,37 @@
 import Image from "next/image";
 import FadeUp from "../animations/FadeUp";
-import { getTranslations } from "next-intl/server";
+import { getLocale, getTranslations } from "next-intl/server";
 
 type Award = {
   id: string;
   image: string;
+  image_public_id: string;
   text: string;
+  text_en: string;
+  text_ru: string;
   created_at: string;
   updated_at: string;
 };
 
 export default async function Awards() {
+  const locale = await getLocale();
   const t = await getTranslations("main");
 
   const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/awards`, {
     cache: "no-store",
   });
   const awards = await res.json();
+
+  function getAwardText(award: Award, locale: string) {
+    switch (locale) {
+      case "en":
+        return award.text_en ?? award.text;
+      case "ru":
+        return award.text_ru ?? award.text;
+      default:
+        return award.text;
+    }
+  }
 
   return (
     <div className="relative flex flex-col items-center py-30 overflow-hidden">
@@ -55,18 +70,11 @@ export default async function Awards() {
             <div key={award.id} className="max-lg:space-y-10 space-y-30">
               <FadeUp>
                 <div
-                  className={`grid max-lg:grid-cols-1 grid-cols-2 max-lg:gap-0 gap-40`}
+                  className={`grid max-lg:grid-cols-1 grid-cols-2 items-center max-lg:gap-0 gap-40`}
                 >
                   <div
                     className={`relative flex items-center justify-center aspect-square max-lg:aspect-video max-lg:mt-10 max-lg:order-0 ${index % 2 !== 0 ? "order-2" : ""}`}
                   >
-                    {/* <Image
-                    src={`${process.env.NEXT_PUBLIC_API_URL}${award.image}`}
-                    alt={`${award.id}`}
-                    fill
-                    unoptimized
-                    className="object-cover"
-                  /> */}
                     <img
                       src={`${award.image}`}
                       alt={award.id}
@@ -78,7 +86,7 @@ export default async function Awards() {
                       index % 2 !== 0 ? "order-1" : ""
                     }`}
                   >
-                    {award.text}
+                    {getAwardText(award, locale)}
                   </p>
                 </div>
               </FadeUp>
